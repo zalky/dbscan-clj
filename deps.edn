@@ -1,0 +1,22 @@
+{:deps    {org.clojure/clojure {:mvn/version "1.11.1"}}
+ :paths   ["src"]
+ :aliases {:repl      {:extra-deps {nrepl/nrepl                   {:mvn/version "0.8.3"}
+                                    cider/cider-nrepl             {:mvn/version "0.28.5"}
+                                    io.zalky/runway               {:mvn/version "0.2.2"}
+                                    refactor-nrepl/refactor-nrepl {:mvn/version "3.5.5"}}
+                       :exec-fn    runway.core/exec
+                       :exec-args  {runway.nrepl/server {}
+                                    runway.core/watcher {}}}
+           :test/clj  {:extra-paths ["test"]
+                       :extra-deps  {org.clojure/test.check    {:mvn/version "1.1.1"}
+                                     com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
+                                                                :sha     "705ad25bbf0228b1c38d0244a36001c2987d7337"}}
+                       :jvm-opts    ["-Dprofile=test"]
+                       :main-opts   ["-m" "cognitect.test-runner"]}
+           :test/cljs {:extra-paths ["test"]
+                       :extra-deps  {org.clojure/test.check {:mvn/version "1.1.1"}
+                                     thheller/shadow-cljs   {:mvn/version "2.20.2"}}
+                       :main-opts   ["-m" "shadow.cljs.devtools.cli"]}
+           :build     {:deps       {io.zalky/build-clj {:git/url "https://github.com/zalky/build-clj.git"
+                                                        :git/sha "c8782e887381160f6d34d48425dc2d3a2a40f4cb"}}
+                       :ns-default io.zalky.build}}}

@@ -1,0 +1,3 @@
+{:builds {:ci {:target           :karma
+               :compiler-options {:infer-externs true}
+               :output-to        "resources/assets/js/ci.js"}}}
